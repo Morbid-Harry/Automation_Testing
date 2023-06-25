@@ -34,7 +34,7 @@ public class Manage_Projects_Page_Steps {
 
     @Then("I should see a project created success message")
     public void iShouldSeeASuccessMessage() {
-        pageObjectManager.getManangeProjectsPOM().isSuccessVisible();
+        assertTrue(pageObjectManager.getManangeProjectsPOM().isSuccessVisible());
     }
 
     @When("I create a project with that is remote")

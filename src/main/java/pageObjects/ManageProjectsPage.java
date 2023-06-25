@@ -287,7 +287,6 @@ public class ManageProjectsPage extends SideBar{
         else {
             return successMessage.isDisplayed();
         }
-
     }
 
 
