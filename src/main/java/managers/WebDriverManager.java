@@ -51,6 +51,7 @@ public class WebDriverManager {
             case CHROME -> driver = new ChromeDriver();
             case FIREFOX -> driver = new FirefoxDriver();
         }
+
         return driver;
     }
 
