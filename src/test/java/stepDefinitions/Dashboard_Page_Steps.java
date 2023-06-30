@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -111,5 +112,37 @@ public class Dashboard_Page_Steps {
     @Then("All roles I see should have the Tool used {string}")
     public void allRolesISeeShouldHaveTheToolUsed(String filteredTool) {
         assertTrue(pageObjectManager.getDashboardPOM().verifyFilterByToolUsedIsCorrect(filteredTool));
+    }
+
+    @When("I click the Add to Favourites button")
+    public void iClickTheAddToFavouritesButton() {
+        pageObjectManager.getDashboardPOM().addProjectToFavourites();
+    }
+
+    @Then("I should see an added to favourites message")
+    public void iShouldSeeAnAddedToFavouritesMessage() {
+        assertTrue(pageObjectManager.getDashboardPOM().isSuccessVisible());
+    }
+
+    @Then("I should see an already in your favourites message")
+    public void iShouldSeeAnAlreadyInYourFavouritesMessage() {
+        assertTrue(pageObjectManager.getDashboardPOM().isFailureVisible());
+    }
+
+    @Given("I am on the favourites page")
+    public void iAmOnTheFavouritesPage() {
+        pageObjectManager.getLoginPOM().navigateTo_LoginPage();
+        pageObjectManager.getLoginPOM().login("haedward", "pass");
+        pageObjectManager.getSideBarPOM().clickFavourites();
+    }
+
+    @When("I click Remove from Favourites button")
+    public void iClickRemoveFromFavouritesButton() {
+        pageObjectManager.getDashboardPOM().removeProjectFromFavourites();
+    }
+
+    @Then("I should see project removed from favourites message")
+    public void iShouldSeeProjectRemovedFromFavouritesMessage() {
+        assertTrue(pageObjectManager.getDashboardPOM().isSuccessVisible());
     }
 }

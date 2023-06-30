@@ -17,8 +17,14 @@ public class SideBar {
     @FindBy(linkText = "Create User")
     private WebElement createUserButton;
 
+    @FindBy(linkText = "Profile")
+    private WebElement profileButton;
+
     @FindBy(linkText = "Dashboard")
     private WebElement dashboardButton;
+
+    @FindBy(linkText = "Favourites")
+    private WebElement favouritesButton;
 
     @FindBy(linkText = "Manage Project Roles")
     private WebElement manageProjectRolesButton;
@@ -40,15 +46,20 @@ public class SideBar {
         dashboardButton.click();
     }
 
+    public void clickProfile(){ profileButton.click(); }
+
     public void clickManageProjects()
     {
         manageProjectRolesButton.click();
     }
 
+    public void clickFavourites(){favouritesButton.click();}
+
     public void clickCreateUser()
     {
         createUserButton.click();
     }
+
     public boolean getVisibleButtons(String buttontext)
     {
         WebElement buttonSearchedFor = driver.findElement(By.linkText(buttontext));

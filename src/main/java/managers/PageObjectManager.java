@@ -18,6 +18,8 @@ public class PageObjectManager {
 
     private CreateUserPage createUserPage;
 
+    private ProfilePage profilePage;
+
     private SideBar sideBar;
 
     /**
@@ -101,6 +103,16 @@ public class PageObjectManager {
         }
         else {
             return createUserPage;
+        }
+    }
+
+    public ProfilePage getProfilePOM() {
+        if (profilePage == null)
+        {
+            return profilePage = new ProfilePage(driver);
+        }
+        else {
+            return profilePage;
         }
     }
 

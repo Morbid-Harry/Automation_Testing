@@ -54,4 +54,21 @@ Feature: As a User on the dashboard I should be able to favorite and show intere
     Given I am on the dashboard page
     When I filter by the Tool used "Eggplant"
     Then All roles I see should have the Tool used "Eggplant"
+    
+  Scenario: As a user when click view details on a role I should be able to favourite it
+    Given I am on the dashboard page
+    When I view the project role client: "Company:539" and project "Project:268"
+    And I click the Add to Favourites button
+    Then I should see an added to favourites message
 
+  Scenario: As a user when I try to favourite a role already in my favourites then I should see a project in your favourites message
+    Given I am on the dashboard page
+    When I view the project role client: "Company:539" and project "Project:268"
+    And I click the Add to Favourites button
+    Then I should see an already in your favourites message
+
+  Scenario: As a user I should be able to remove a project from my favourites
+    Given I am on the favourites page
+    When I view the project role client: "Company:539" and project "Project:268"
+    And I click Remove from Favourites button
+    Then I should see project removed from favourites message

@@ -1,7 +1,5 @@
 package pageObjects;
 
-import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
-import managers.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -29,8 +27,17 @@ public class DashboardPage extends SideBar{
     @FindBy(id = "show-interest")
     private WebElement showInterestButton;
 
+    @FindBy(id = "add-favourites")
+    private WebElement addToFavouritesButton;
+
+    @FindBy(id = "remove-favourites")
+    private WebElement removeFromFavouritesButton;
+
     @FindBy(className = "alert-success")
-    private WebElement emailSentMessage;
+    private WebElement alertSuccessMessage;
+
+    @FindBy(className = "alert-danger")
+    private WebElement alertFailureMessage;
 
     @FindBy(id = "grade-filter")
     private WebElement gradeFilter;
@@ -54,7 +61,6 @@ public class DashboardPage extends SideBar{
 
     public void viewSpecificRecord(String companyName, String projectName)
     {
-
         //Construct the XPath expression for specific record
         String xpathExpression = String.format("//h5[contains(text(), '%s') and contains(text(), '%s')]/ancestor::div[@class='card my-2']", companyName, projectName);
 
@@ -83,12 +89,36 @@ public class DashboardPage extends SideBar{
         showInterestButton.click();
     }
 
+    public void addProjectToFavourites()
+    {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(addToFavouritesButton));
+
+        addToFavouritesButton.click();
+    }
+
+    public void removeProjectFromFavourites()
+    {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(removeFromFavouritesButton));
+
+        removeFromFavouritesButton.click();
+    }
+
     public boolean isSuccessVisible()
     {
-        //Give time for the response as have to wait for email to send
+        //Give time for the response to return message
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        return emailSentMessage.isDisplayed();
+        return alertSuccessMessage.isDisplayed();
+    }
+
+    public boolean isFailureVisible()
+    {
+        //Give time for the response to return message
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+        return alertFailureMessage.isDisplayed();
     }
 
     public WebElement waitForModalToBeVisible()
