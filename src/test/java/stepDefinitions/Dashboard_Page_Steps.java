@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,140 +8,153 @@ import static org.junit.Assert.*;
 
 import managers.PageObjectManager;
 import org.openqa.selenium.WebDriver;
+import pageObjects.DashboardPage;
+import pageObjects.LoginPage;
+import pageObjects.SideBar;
 
 
 public class Dashboard_Page_Steps {
 
     WebDriver driver;
     PageObjectManager pageObjectManager;
-    public Dashboard_Page_Steps(Base base)
+
+    LoginPage loginPage;
+
+    DashboardPage dashboardPage;
+
+    SideBar sideBar;
+
+    public Dashboard_Page_Steps(Test_Context testContext)
     {
-        this.driver = base.driver;
-        this.pageObjectManager = base.pageObjectManager;
+        this.driver = testContext.driver;
+        this.dashboardPage = testContext.pageObjectManager.getDashboardPOM();
+        this.loginPage = testContext.pageObjectManager.getLoginPOM();
+        this.sideBar = testContext.pageObjectManager.getSideBarPOM();
     }
 
     @Given("I am on the dashboard page")
     public void iAmOnTheDashboardPage()
     {
-        pageObjectManager.getLoginPOM().navigateTo_LoginPage();
-        pageObjectManager.getLoginPOM().login("haedward", "pass");
+        loginPage.navigateTo_LoginPage();
+        loginPage.login("haedward", "pass");
     }
 
     @When("I show interest in a project role")
     public void iShowInterestInAProjectRole() {
-        pageObjectManager.getDashboardPOM().showInterestInProject();
+        dashboardPage.showInterestInProject();
     }
 
     @Then("I should see an email sent message")
     public void iShouldSeeAnEmailSentMessage() {
-        assertTrue(pageObjectManager.getDashboardPOM().isSuccessVisible());
+        assertTrue(dashboardPage.isSuccessVisible());
     }
 
     @When("I view the project role client: {string} and project {string}")
     public void iViewTheProjectRoleTitled(String clientName, String projectName) {
-        pageObjectManager.getDashboardPOM().viewSpecificRecord(clientName, projectName);
+        dashboardPage.viewSpecificRecord(clientName, projectName);
     }
 
     @Then("The card title should be {string}")
     public void theCardTitleShouldBe(String cardTitle) {
-        assertEquals(cardTitle, pageObjectManager.getDashboardPOM().getCardTitle());
+        assertEquals(dashboardPage.getCardTitle(), cardTitle);
+
     }
 
     @Then("The project name should be {string}")
     public void theProjectNameShouldBe(String projectName) {
-        assertEquals(projectName, pageObjectManager.getDashboardPOM().getProjectName());
+        assertEquals(dashboardPage.getProjectName(), projectName);
     }
 
     @Then("The grade required should be {string}")
     public void theGradeRequiredShouldBe(String gradeRequired) {
-        assertEquals(gradeRequired, pageObjectManager.getDashboardPOM().getGradeRequired());
+        assertEquals(gradeRequired, dashboardPage.getGradeRequired());
     }
 
     @Then("The start date should be {string}")
     public void theStartDateShouldBe(String startDate) {
-        assertEquals(startDate, pageObjectManager.getDashboardPOM().getStartDate());
+        assertEquals(startDate, dashboardPage.getStartDate());
     }
 
     @Then("The end date should be {string}")
     public void theEndDateShouldBe(String endDate) {
-        assertEquals(endDate, pageObjectManager.getDashboardPOM().getEndDate());
+        assertEquals(endDate, dashboardPage.getEndDate());
     }
 
     @Then("The way of working should be {string}")
     public void theWayOfWorkingShouldBe(String wayOfWorking) {
-        assertEquals(wayOfWorking, pageObjectManager.getDashboardPOM().getWayOfWorking());
+        assertEquals(wayOfWorking, dashboardPage.getWayOfWorking());
     }
 
     @Then("The address should be {string}")
     public void theAddressShouldBe(String address) {
-        assertEquals(address, pageObjectManager.getDashboardPOM().getAddress());
+        assertEquals(address, dashboardPage.getAddress());
     }
 
     @Then("The description should be {string}")
     public void theDescriptionShouldBe(String description) {
-        assertEquals(description, pageObjectManager.getDashboardPOM().getDescription());
+        assertEquals(description, dashboardPage.getDescription());
     }
 
 
     @When("I filter by grade {string}")
     public void iFilterByGrade(String gradeSelected) {
-        pageObjectManager.getDashboardPOM().filterByGrade(gradeSelected);
+        dashboardPage.filterByGrade(gradeSelected);
     }
 
     @Then("All roles I see should have the grade {string}")
     public void allRolesISeeShouldBe(String filteredGrade) {
-        assertTrue(pageObjectManager.getDashboardPOM().verifyFilterByGradeIsCorrect(filteredGrade));
+        assertTrue(dashboardPage.verifyFilterByGradeIsCorrect(filteredGrade));
     }
 
     @When("I filter by Way of Working {string}")
     public void iFilterByWayOfWorking(String wayOfWorkingSelected) {
-        pageObjectManager.getDashboardPOM().filterByWayOfWorking(wayOfWorkingSelected);
+        dashboardPage.filterByWayOfWorking(wayOfWorkingSelected);
     }
 
     @Then("All roles I see should have the Way of Working {string}")
     public void allRolesISeeShouldHaveTheWayOfWorking(String filteredWayOfWorking) {
-        assertTrue(pageObjectManager.getDashboardPOM().verifyFilterByWayOfWorkingIsCorrect(filteredWayOfWorking));
+        assertTrue(dashboardPage.verifyFilterByWayOfWorkingIsCorrect(filteredWayOfWorking));
     }
 
     @When("I filter by the Tool used {string}")
     public void iFilterByTheToolUsed(String toolSelected) {
-        pageObjectManager.getDashboardPOM().filterByToolUsed(toolSelected);
+        dashboardPage.filterByToolUsed(toolSelected);
     }
 
     @Then("All roles I see should have the Tool used {string}")
     public void allRolesISeeShouldHaveTheToolUsed(String filteredTool) {
-        assertTrue(pageObjectManager.getDashboardPOM().verifyFilterByToolUsedIsCorrect(filteredTool));
+        assertTrue(dashboardPage.verifyFilterByToolUsedIsCorrect(filteredTool));
     }
 
     @When("I click the Add to Favourites button")
     public void iClickTheAddToFavouritesButton() {
-        pageObjectManager.getDashboardPOM().addProjectToFavourites();
+        dashboardPage.addProjectToFavourites();
     }
 
     @Then("I should see an added to favourites message")
     public void iShouldSeeAnAddedToFavouritesMessage() {
-        assertTrue(pageObjectManager.getDashboardPOM().isSuccessVisible());
+        assertTrue(dashboardPage.isSuccessVisible());
     }
 
     @Then("I should see an already in your favourites message")
     public void iShouldSeeAnAlreadyInYourFavouritesMessage() {
-        assertTrue(pageObjectManager.getDashboardPOM().isFailureVisible());
+        assertTrue(dashboardPage.isFailureVisible());
     }
 
     @Given("I am on the favourites page")
     public void iAmOnTheFavouritesPage() {
-        pageObjectManager.getLoginPOM().navigateTo_LoginPage();
-        pageObjectManager.getLoginPOM().login("haedward", "pass");
-        pageObjectManager.getSideBarPOM().clickFavourites();
+        loginPage.navigateTo_LoginPage();
+        loginPage.login("haedward", "pass");
+        sideBar.clickFavourites();
     }
 
     @When("I click Remove from Favourites button")
     public void iClickRemoveFromFavouritesButton() {
-        pageObjectManager.getDashboardPOM().removeProjectFromFavourites();
+        dashboardPage.removeProjectFromFavourites();
     }
 
     @Then("I should see project removed from favourites message")
     public void iShouldSeeProjectRemovedFromFavouritesMessage() {
-        assertTrue(pageObjectManager.getDashboardPOM().isSuccessVisible());
+        assertTrue(dashboardPage.isSuccessVisible());
     }
 }

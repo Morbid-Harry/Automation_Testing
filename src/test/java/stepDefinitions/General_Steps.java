@@ -1,10 +1,8 @@
 package stepDefinitions;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import managers.PageObjectManager;
-import managers.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
 public class General_Steps{
@@ -13,12 +11,12 @@ public class General_Steps{
 
     /**
      *
-     * @param base injected by cucumber to provide a single point of reference for the webdriver
+     * @param testContext injected by cucumber to provide a single point of reference for the webdriver
      */
-    public General_Steps(Base base)
+    public General_Steps(Test_Context testContext)
     {
-        this.driver = base.driver;
-        this.pageObjectManager = base.pageObjectManager;
+        this.driver = testContext.driver;
+        this.pageObjectManager = testContext.pageObjectManager;
     }
 
     @When("I click logout")

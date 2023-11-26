@@ -4,7 +4,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import managers.PageObjectManager;
-import managers.Wait;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.*;
@@ -13,10 +12,10 @@ public class Create_User_Steps {
 
     WebDriver driver;
     PageObjectManager pageObjectManager;
-    public Create_User_Steps(Base base)
+    public Create_User_Steps(Test_Context testContext)
     {
-        this.driver = base.driver;
-        this.pageObjectManager = base.pageObjectManager;
+        this.driver = testContext.driver;
+        this.pageObjectManager = testContext.pageObjectManager;
     }
 
     @Given("I am on the create user screen")

@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import pageObjects.*;
 
 /**
- * When we have multiple feature files we will end up creating lots of pages objects. The POM ensures there is only ever 1 instance of a created page object.
+ * When we have multiple feature files we will end up creating lots of pages objects. With POM and Dependency Injection we ensure there is only ever 1 instance of a created page object.
  * Reducing overall resource demand.
  */
 public class PageObjectManager {

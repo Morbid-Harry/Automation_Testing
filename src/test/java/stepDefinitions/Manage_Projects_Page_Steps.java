@@ -14,10 +14,10 @@ public class Manage_Projects_Page_Steps {
 
     WebDriver driver;
     PageObjectManager pageObjectManager;
-    public Manage_Projects_Page_Steps(Base base)
+    public Manage_Projects_Page_Steps(Test_Context testContext)
     {
-        this.driver = base.driver;
-        this.pageObjectManager = base.pageObjectManager;
+        this.driver = testContext.driver;
+        this.pageObjectManager = testContext.pageObjectManager;
     }
 
     @Given("I am on the Manage Project Page")

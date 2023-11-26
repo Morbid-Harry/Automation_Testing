@@ -24,11 +24,8 @@ public class LoginPage {
     @FindBy(id = "sign-in")
     private WebElement loginButton;
 
-    ConfigFileReader configFileReader;
-
     public LoginPage(WebDriver driver)
     {
-        configFileReader = new ConfigFileReader();
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

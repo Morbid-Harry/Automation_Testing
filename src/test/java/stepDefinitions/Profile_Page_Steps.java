@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,10 +13,10 @@ public class Profile_Page_Steps {
 
     WebDriver driver;
     PageObjectManager pageObjectManager;
-    public Profile_Page_Steps(Base base)
+    public Profile_Page_Steps(Test_Context testContext)
     {
-        this.driver = base.driver;
-        this.pageObjectManager = base.pageObjectManager;
+        this.driver = testContext.driver;
+        this.pageObjectManager = testContext.pageObjectManager;
     }
 
     @Given("I am on the profile page")

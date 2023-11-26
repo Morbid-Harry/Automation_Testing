@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,10 +15,10 @@ public class Login_Page_Steps {
 
     WebDriver driver;
     PageObjectManager pageObjectManager;
-    public Login_Page_Steps(Base base)
+    public Login_Page_Steps(Test_Context testContext)
     {
-        this.driver = base.driver;
-        this.pageObjectManager = base.pageObjectManager;
+        this.driver = testContext.driver;
+        this.pageObjectManager = testContext.pageObjectManager;
     }
 
 

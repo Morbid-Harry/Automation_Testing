@@ -6,7 +6,7 @@ import managers.PageObjectManager;
 import managers.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
-public class Base {
+public class Test_Context {
     public WebDriver driver;
     public PageObjectManager pageObjectManager;
     public managers.WebDriverManager webDriverManager;
