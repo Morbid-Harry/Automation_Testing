@@ -28,3 +28,4 @@ Feature: Login Page Functionality
       | admin    | adminpass | Create User          |
       | admin    | adminpass | Manage Project Roles |
       | rm_user1 | rmpass1   | Manage Project Roles |
+

@@ -58,7 +58,7 @@ public class WebDriverManager {
     /**
      * Close & quit the driver to ensure it's not left open when tests are finished
      */
-    public void closeDriver()
+    public void quitDriver()
     {
         driver.quit();
     }

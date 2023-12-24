@@ -22,6 +22,6 @@ public class Test_Context {
     @After
     public void after()
     {
-        webDriverManager.closeDriver();
+        webDriverManager.quitDriver();
     }
 }
